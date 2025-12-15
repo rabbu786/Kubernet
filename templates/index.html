@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Medicine Web App</title>
+</head>
+<body>
+    <h1>Medicine List</h1>
+
+    <!-- Buttons -->
+    <button onclick="location.href='/count'">Count Medicines</button>
+    <button onclick="location.href='/list'">List Medicines</button>
+
+    <hr>
+
+    <!-- Search Form -->
+    <h3>Search Medicine</h3>
+    <form method="POST">
+        <input type="text" name="search" placeholder="Enter medicine name" required>
+        <button type="submit">Search</button>
+    </form>
+
+    <!-- Search Results -->
+    {% if search_result != None %}
+        <h3>Search Results:</h3>
+        {% if search_result %}
+            <ul>
+            {% for item in search_result %}
+                <li>{{ item.Medicine }} - {{ item.Dosage }}</li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <p>No medicine found.</p>
+        {% endif %}
+    {% endif %}
+
+    <hr>
+
+    <!-- Full Medicine Table -->
+    <h2>All Medicines from Excel</h2>
+    <table border="1" cellpadding="5">
+        <tr>
+            <th>Medicine</th>
+            <th>Dosage</th>
+        </tr>
+
+        {% for item in medicines %}
+        <tr>
+            <td>{{ item.Medicine }}</td>
+            <td>{{ item.Dosage }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</body>
+</html>
